@@ -2,6 +2,10 @@
 
 A responsive event scheduling application built with Angular 19 and Angular Material. Features a weekly timetable view with multi-venue event management, horizontal/vertical scrolling, and persistent data storage.
 
+## Live Demo
+
+🚀 **[View Live Demo](https://event-time-table-xi.vercel.app/)**
+
 ## Features
 
 - **Weekly Timetable View**: Navigate between weeks with arrow buttons
