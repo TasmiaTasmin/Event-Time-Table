@@ -1,0 +1,64 @@
+<div class="timetable-container">
+  <div class="tab-header-wrapper">
+    <button mat-icon-button (click)="previousWeek()" class="nav-arrow">
+      <mat-icon>keyboard_arrow_left</mat-icon>
+    </button>
+    <mat-tab-group class="day-tabs" (selectedTabChange)="onTabChange($event)" [selectedIndex]="selectedDay">
+      <mat-tab *ngFor="let day of days; let i = index">
+        <ng-template mat-tab-label>
+          <div class="day-label">
+            <div class="day-name">{{ day.name }}</div>
+            <div class="day-date">{{ day.date }}</div>
+          </div>
+        </ng-template>
+        <div></div>
+      </mat-tab>
+    </mat-tab-group>
+    <button mat-icon-button (click)="nextWeek()" class="nav-arrow">
+      <mat-icon>keyboard_arrow_right</mat-icon>
+    </button>
+  </div>
+  <div class="timetable-header">
+    <div class="time-header">Time</div>
+    <div class="venues-header" #venuesHeader>
+      <div *ngFor="let venue of venues" class="venue-header">{{ venue }}</div>
+    </div>
+  </div>
+  <div class="timetable-wrapper">
+    <div class="timetable-content" cdkScrollable>
+      <div class="timetable-grid">
+        <div class="time-column">
+          <div *ngFor="let time of timeSlots" class="time-slot">
+            {{ time }}
+          </div>
+        </div>
+        <div class="venues-content" #venuesContent (wheel)="onWheel($event)">
+          <div class="venues-container">
+            <div *ngFor="let venue of venues; let v = index" class="venue-column">
+              <div class="venue-grid">
+                <div *ngFor="let time of timeSlots" class="grid-slot"></div>
+              </div>
+            </div>
+            <div 
+              *ngFor="let event of getEventsForDay(selectedDay)" 
+              class="event-card"
+              [style.top]="getEventPosition(event).top"
+              [style.height]="getEventPosition(event).height"
+              [style.left]="getEventPosition(event).left"
+              [style.width]="getEventPosition(event).width"
+              [style.background-color]="event.color">
+              <div class="event-title">{{ event.title }}</div>
+              <div class="event-time">{{ event.startTime }} - {{ event.endTime }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="horizontal-scroll-wrapper">
+      <div class="time-spacer"></div>
+      <div class="horizontal-scrollbar" (scroll)="onScroll($event)" #scrollContainer>
+        <div class="scroll-content"></div>
+      </div>
+    </div>
+  </div>
+</div>
