@@ -37,9 +37,3 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
 ```bash
 ng build
 ```
-
-### Running Tests
-
-```bash
-ng test
-```
